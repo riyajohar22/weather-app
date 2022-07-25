@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerlinks}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!-- main header  -->
+    <div class="container-fludi main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form class="temp_form">
+                        <input type="text" id="cityName" placeholder="enter your city name" autocomplete="off">
+                        <input type="submit" value="search" id="submitBtn">
+                    </form>
+                </div>
+                <div class="tempInformation">
+                    <div class="top_layer">
+                        <p id="day">Tuesday</p>
+                        <p id="today_date">13 oOCT</p>
+                    </div>
+                    <div class="main_layer ">
+                        <p id="city_name">Get output here</p>
+                        <div class="middle_layer data_hide">
+                            <p id="temp"><span id="temp_real_val">0</span> <sup>o</sup>C </p>
+                            <p id="temp_status"><i class="fa fa-cloud" aria-hidden="true"></i></p>
+                        </div>
+                    </div>
+                    <div class="bottom_layer data_hide">
+                        <div>
+                        <p><i class="fa fa-cog fa-spin" style="font-size:20px;color: #72E090;"> </i> <span id="main"></span></p>
+                        <p ><i class="fa fa-cog fa-spin" style="font-size:20px;color: #72E090;"> </i> <span id="description"></span></p>
+                        <p><i class="fa fa-cog fa-spin" style="font-size:20px;color: #72E090;"> </i> <span id="feels_like"></span>  <sup>o</sup>C</p>
+                        <p > <i style=' color:#72E090;' class='fas'>&#xf769;</i> <span id="temp_min"> </span> <sup>o</sup>C </p>
+                        </div>
+                        <div>
+                        <p >  <i style=' color:#72E090;' class='fas'>&#xf769;</i> <span id="temp_max">  </span> <sup>o</sup>C</p>
+                        <p ><i style=' color:#72E090;' class='fas'>&#xf769;</i> <span id="pressure"> </span> hPa</p>
+                        <p><i class="fa fa-cog fa-spin" style="font-size:20px;color: #72E090;"> </i> <span id="humidity"> </span> %</p>
+                        <p> <i class='fas fa-wind' style='color:#72E090;'></i> <span id="speed"> </span>km/h</p>
+                       </div>
+                  
+                
+                      
+                    
+
+                      
+
+
+                        
+
+                        
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{>footer}}
+    <script src="js/main.js"></script>
+    <script>
+
+        const getCurrentTime = () => {
+            var months = [
+                'Jan',
+                'feb',
+                'Mar',
+                'Apr',
+                'May',
+                'June',
+                'July',
+                'Aug',
+                'Sept',
+                'Oct',
+                'Nov',
+                'Dec',
+            ];
+            var now = new Date();
+            // var month = months[now.getMonth() + 1];
+            var month = months[now.getMonth()];
+            var date = now.getDate();
+            // var year = now.getFullYear();
+
+
+            let hours = now.getHours();
+            let mins = now.getMinutes();
+
+            let periods = "AM";
+
+            if (hours > 11) {
+                periods = "PM";
+                if (hours > 12) hours -= 12
+            }
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+            let today_date = document.getElementById('today_date');
+            //today_date.innerHTML(`${month} ${date} | ${hours}:${mins} ${periods}`); 
+
+            today_date.innerText = `${month} ${date} | ${hours}:${mins} ${periods}`;
+
+
+
+            // console.log(month + "/" + day);
+        }
+        getCurrentTime();
+
+
+
+        const getCurrentDay = () => {
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thrusday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            let getCurrentTime = new Date();
+            // console.log(weekday[getCurrentTime.getDay()]);
+            let days = weekday[getCurrentTime.getDay()];
+            let day = document.getElementById('day');
+            day.innerText = days;
+            getCurrentTime();
+        }
+
+        getCurrentDay();
+
+
+
+
+    </script>
+</body>
+
+</html>
